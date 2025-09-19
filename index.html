@@ -48,21 +48,7 @@
             outline: none;
             border-color: #1d4ed8;
             background-color: rgba(37, 99, 235, 0.1);
-        }
-        
-        /* Creative Floating Elements */
-        .floating-element {
-            position: absolute;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .floating-element:nth-child(1) { animation-delay: 0s; }
-        .floating-element:nth-child(2) { animation-delay: 2s; }
-        .floating-element:nth-child(3) { animation-delay: 4s; }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+            /* .editable class removed for non-editable site */
         }
         
         /* Creative Name Animation */
@@ -366,13 +352,13 @@
             <!-- Content Section - Right Side -->
             <div class="text-center lg:text-left flex-1">
                 <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                    <span contenteditable="true" class="editable animated-name" contenteditable="true">Suchetana Biswas</span>
+                                <span contenteditable="true" class="editable animated-name">Suchetana Biswas</span>
                 </h1>
                 <div class="text-2xl md:text-3xl text-gray-600 mb-4 font-light typewriter inline-block">
-                    <span contenteditable="true" class="editable" contenteditable="true">Data Analyst</span>
+                                <span contenteditable="true" class="editable">Data Analyst</span>
                 </div>
                 <p class="text-lg text-gray-500 mb-12 max-w-2xl leading-relaxed slide-in-up">
-                    <span contenteditable="true" class="editable" contenteditable="true">Aspiring Data Analyst seeking an opportunity to leverage strong analytical skills, quick adaptability, and a results-driven mindset to deliver data-driven insights that support strategic decision-making and contribute to organizational success.</span>
+                                <span contenteditable="true" class="editable">Aspiring Data Analyst seeking an opportunity to leverage strong analytical skills, quick adaptability, and a results-driven mindset to deliver data-driven insights that support strategic decision-making and contribute to organizational success.</span>
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start slide-in-up">
                     <a href="https://drive.google.com/file/d/1si6clZWFulCD7GU2T9-2X5TVhjYAQBeZ/view?usp=drive_link" target="_blank" class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center">
@@ -847,22 +833,22 @@
                     <div class="skill-hex bg-gradient-to-br from-primary to-data-cyan text-white p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group" style="width: 180px; height: 120px;">
                         <div class="flex flex-col items-center justify-center h-full text-center">
                             <i class="fas fa-comments text-2xl mb-2 group-hover:animate-bounce"></i>
-                            <span class="font-semibold text-sm" contenteditable="true">Communication</span>
-                            <span class="text-xs opacity-80" contenteditable="true">Data Storytelling</span>
+                            <span class="font-semibold text-sm">Communication</span>
+                            <span class="text-xs opacity-80">Data Storytelling</span>
                         </div>
                     </div>
                     <div class="skill-hex bg-gradient-to-br from-purple-500 to-pink-500 text-white p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group" style="width: 180px; height: 120px;">
                         <div class="flex flex-col items-center justify-center h-full text-center">
                             <i class="fas fa-lightbulb text-2xl mb-2 group-hover:animate-bounce"></i>
-                            <span class="font-semibold text-sm" contenteditable="true">Problem Solving</span>
-                            <span class="text-xs opacity-80" contenteditable="true">Critical Thinking</span>
+                            <span class="font-semibold text-sm">Problem Solving</span>
+                            <span class="text-xs opacity-80">Critical Thinking</span>
                         </div>
                     </div>
                     <div class="skill-hex bg-gradient-to-br from-green-500 to-teal-500 text-white p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group" style="width: 180px; height: 120px;">
                         <div class="flex flex-col items-center justify-center h-full text-center">
                             <i class="fas fa-users text-2xl mb-2 group-hover:animate-bounce"></i>
-                            <span class="font-semibold text-sm" contenteditable="true">Leadership</span>
-                            <span class="text-xs opacity-80" contenteditable="true">Team Management</span>
+                            <span class="font-semibold text-sm">Leadership</span>
+                            <span class="text-xs opacity-80">Team Management</span>
                         </div>
                     </div>
                 </div>
@@ -872,22 +858,22 @@
                     <div class="skill-hex bg-gradient-to-br from-orange-500 to-red-500 text-white p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group" style="width: 180px; height: 120px;">
                         <div class="flex flex-col items-center justify-center h-full text-center">
                             <i class="fas fa-tasks text-2xl mb-2 group-hover:animate-bounce"></i>
-                            <span class="font-semibold text-sm" contenteditable="true">Project Management</span>
-                            <span class="text-xs opacity-80" contenteditable="true">Agile Methods</span>
+                            <span class="font-semibold text-sm">Project Management</span>
+                            <span class="text-xs opacity-80">Agile Methods</span>
                         </div>
                     </div>
                     <div class="skill-hex bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group" style="width: 180px; height: 120px;">
                         <div class="flex flex-col items-center justify-center h-full text-center">
                             <i class="fas fa-chart-pie text-2xl mb-2 group-hover:animate-bounce"></i>
-                            <span class="font-semibold text-sm" contenteditable="true">Business Acumen</span>
-                            <span class="text-xs opacity-80" contenteditable="true">Strategic Analysis</span>
+                            <span class="font-semibold text-sm">Business Acumen</span>
+                            <span class="text-xs opacity-80">Strategic Analysis</span>
                         </div>
                     </div>
                     <div class="skill-hex bg-gradient-to-br from-cyan-500 to-blue-600 text-white p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group" style="width: 180px; height: 120px;">
                         <div class="flex flex-col items-center justify-center h-full text-center">
                             <i class="fas fa-sync-alt text-2xl mb-2 group-hover:animate-bounce"></i>
-                            <span class="font-semibold text-sm" contenteditable="true">Adaptability</span>
-                            <span class="text-xs opacity-80" contenteditable="true">Continuous Learning</span>
+                            <span class="font-semibold text-sm">Adaptability</span>
+                            <span class="text-xs opacity-80">Continuous Learning</span>
                         </div>
                     </div>
                 </div>
@@ -978,7 +964,7 @@
                             </div>
                             <div>
                                 <h3 class="font-semibold text-gray-800">Email</h3>
-                                <p class="text-gray-600" contenteditable="true">suchetana.15.08@gmail.com</p>
+                                <p class="text-gray-600">suchetana.15.08@gmail.com</p>
                             </div>
                         </div>
                     </div>
@@ -990,7 +976,7 @@
                             </div>
                             <div>
                                 <h3 class="font-semibold text-gray-800">Phone</h3>
-                                <p class="text-gray-600" contenteditable="true">7407585635</p>
+                                <p class="text-gray-600">7407585635</p>
                             </div>
                         </div>
                     </div>
@@ -1003,7 +989,7 @@
                         </div>
                         <div>
                             <h3 class="font-semibold text-gray-800">Location</h3>
-                            <p class="text-gray-600" contenteditable="true">Pune, India</p>
+                            <p class="text-gray-600">Pune, India</p>
                         </div>
                     </div>
                 </div>
@@ -1027,7 +1013,7 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-6xl mx-auto px-6 text-center">
-            <p class="text-gray-400">© 2025 <span contenteditable="true" class="editable">Suchetana Biswas</span>. All rights reserved.</p>
+            <p class="text-gray-400">© 2025 <span>Suchetana Biswas</span>. All rights reserved.</p>
             <p class="text-gray-500 mt-2">Turning Data into Insights</p>
         </div>
     </footer>
