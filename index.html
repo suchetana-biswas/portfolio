@@ -1,1 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analyst Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#2563eb',
+                        'secondary': '#1e40af',
+                        'accent': '#3b82f6',
+                        'data-blue': '#1d4ed8',
+                        'data-cyan': '#0891b2'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb, #0891b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .editable {
+            border: 2px dashed transparent;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            padding: 2px 4px;
+        }
+        
+        .editable:hover {
+            border-color: #2563eb;
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+        
+        .editable:focus {
+            outline: none;
+            border-color: #1d4ed8;
+            background-color: rgba(37, 99, 235, 0.1);
+            /* .editable class removed for non-editable site */
+        }
+        
+        /* Creative Name Animation */
+        .animated-name {
+            background: linear-gradient(45deg, #2563eb, #0891b2, #2563eb);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Creative Profile Picture */
+        .profile-container {
+            position: relative;
+            animation: profilePulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes profilePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .profile-ring {
+            position: absolute;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            animation: rotate 8s linear infinite;
+        }
+        
+        .profile-ring-1 {
+            width: 280px;
+            height: 280px;
+            top: -8px;
+            left: -8px;
+            border-top-color: #2563eb;
+            border-right-color: #0891b2;
+        }
+        
+        .profile-ring-2 {
+            width: 300px;
+            height: 300px;
+            top: -18px;
+            left: -18px;
+            border-bottom-color: #0891b2;
+            border-left-color: #2563eb;
+            animation-direction: reverse;
+            animation-duration: 12s;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Moving Sections */
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .slide-in-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transition: all 1s ease-out;
+        }
+        
+        .animate-in {
+            opacity: 1;
+            transform: translate(0);
+        }
+        
+        /* Professional Skills Animation */
+        .skill-card {
+            transition: all 0.4s ease;
+            transform: perspective(1000px) rotateY(0deg);
+        }
+        
+        .skill-card:hover {
+            transform: perspective(1000px) rotateY(5deg) translateY(-10px);
+            box-shadow: 0 25px 50px rgba(37, 99, 235, 0.2);
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #2563eb, #0891b2);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            z-index: 10;
+        }
+        
+        .timeline-item {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 0.8s ease forwards;
+        }
+        
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.6s; }
+        
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+        }
+        
+        .skill-bar {
+            width: 0%;
+            transition: width 2s ease-in-out;
+        }
+        
+        .data-icon {
+            background: linear-gradient(135deg, #2563eb, #0891b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #2563eb;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #2563eb; }
+        }
+
+        /* Enhanced Interactive Elements */
+        .interactive-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interactive-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .interactive-card:hover::before {
+            left: 100%;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Enhanced button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+        }
+
+        /* Professional animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Enhanced navigation */
+        nav {
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Improved section spacing */
+        section {
+            scroll-margin-top: 80px;
+        }
+            /* Mobile Education Timeline Fix */
+            @media (max-width: 767px) {
+                .timeline-line {
+                    display: none;
+                }
+                .timeline-dot {
+                    display: none;
+                }
+                #education .timeline-item {
+                    margin-bottom: 2rem;
+                    opacity: 1;
+                    transform: none;
+                    animation: none;
+                }
+                #education .flex.items-center {
+                    flex-direction: column !important;
+                    align-items: flex-start !important;
+                }
+                #education .w-1\/2 {
+                    width: 100% !important;
+                    padding-left: 0 !important;
+                    padding-right: 0 !important;
+                    text-align: left !important;
+                }
+                #education .pr-8, #education .pl-8 {
+                    padding-left: 0 !important;
+                    padding-right: 0 !important;
+                }
+                #education .text-right {
+                    text-align: left !important;
+                }
+                #education .border-l-4, #education .border-r-4 {
+                    border-left-width: 4px !important;
+                    border-right-width: 0 !important;
+                }
+            }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold gradient-text">Portfolio</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-primary transition-colors font-medium">Home</a>
+                    <a href="#about" class="text-gray-600 hover:text-primary transition-colors font-medium">About</a>
+                    <a href="#education" class="text-gray-600 hover:text-primary transition-colors font-medium">Education</a>
+                    <a href="#experience" class="text-gray-600 hover:text-primary transition-colors font-medium">Experience</a>
+                    <a href="#skills" class="text-gray-600 hover:text-primary transition-colors font-medium">Technical Skills</a>
+                    <a href="#certifications" class="text-gray-600 hover:text-primary transition-colors font-medium">Certifications</a>
+                    <a href="#professional-skills" class="text-gray-600 hover:text-primary transition-colors font-medium">Professional Skills</a>
+                    <a href="#projects" class="text-gray-600 hover:text-primary transition-colors font-medium">Projects</a>
+                    <a href="#contact" class="text-gray-600 hover:text-primary transition-colors font-medium">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-cyan-50 relative overflow-hidden">
+        <!-- Floating Background Elements -->
+        <div class="floating-element top-20 left-10 w-20 h-20 bg-primary/10 rounded-full"></div>
+        <div class="floating-element top-40 right-20 w-16 h-16 bg-data-cyan/10 rounded-full"></div>
+        <div class="floating-element bottom-32 left-1/4 w-12 h-12 bg-primary/20 rounded-full"></div>
+        
+    <div class="flex flex-col lg:flex-row items-start justify-start max-w-6xl mx-auto px-6 relative z-10 gap-12">
+            <!-- Profile Picture Section - Left Side -->
+            <div class="flex-shrink-0">
+                <div class="profile-container relative w-64 h-64">
+                    <div class="profile-ring profile-ring-1"></div>
+                    <div class="profile-ring profile-ring-2"></div>
+                    <div class="w-full h-full rounded-2xl border-4 border-white shadow-2xl overflow-hidden bg-gradient-to-br from-primary to-data-cyan flex items-center justify-center relative group cursor-pointer" onclick="triggerFileInput()">
+                        <img id="profileImage" src="" alt="Profile Picture" class="w-full h-full object-cover hidden" onerror="this.style.display='none'; document.getElementById('profilePlaceholder').style.display='flex';">
+                        <div id="profilePlaceholder" class="flex flex-col items-center justify-center text-white">
+                            <i class="fas fa-camera text-4xl mb-3"></i>
+                            <span class="text-base font-medium">Click to add photo</span>
+                        </div>
+                        <div class="absolute inset-0 bg-black bg-opacity-50 rounded-2xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="text-white text-center">
+                                <i class="fas fa-edit text-3xl mb-2"></i>
+                                <p class="text-base">Change Photo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="file" id="imageInput" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
+                    <!-- Enhanced Decorative elements -->
+                    <div class="absolute -top-3 -right-3 w-8 h-8 bg-green-500 rounded-full border-4 border-white animate-pulse flex items-center justify-center">
+                        <i class="fas fa-check text-white text-xs"></i>
+                    </div>
+                    <div class="absolute -bottom-3 -left-3 w-10 h-10 bg-primary rounded-full border-4 border-white flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-sm"></i>
+                    </div>
+                    <div class="absolute top-6 -left-6 w-6 h-6 bg-data-cyan rounded-full border-3 border-white"></div>
+                    <div class="absolute -top-6 left-1/3 w-5 h-5 bg-yellow-400 rounded-full border-3 border-white"></div>
+                </div>
+            </div>
+            
+            <!-- Content Section - Right Side -->
+            <div class="text-left flex-1">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                                <span contenteditable="true" class="editable animated-name">Suchetana Biswas</span>
+                </h1>
+                <div class="text-2xl md:text-3xl text-gray-600 mb-4 font-light typewriter inline-block">
+                                <span contenteditable="true" class="editable">Data Analyst</span>
+                </div>
+                <p class="text-lg text-gray-500 mb-12 max-w-2xl leading-relaxed slide-in-up">
+                                <span contenteditable="true" class="editable">Aspiring Data Analyst seeking an opportunity to leverage strong analytical skills, quick adaptability, and a results-driven mindset to deliver data-driven insights that support strategic decision-making and contribute to organizational success.</span>
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start slide-in-up">
+                    <a href="https://drive.google.com/file/d/1si6clZWFulCD7GU2T9-2X5TVhjYAQBeZ/view?usp=drive_link" target="_blank" class="bg-primary hover:bg-secondary text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center">
+                        <i class="fas fa-download mr-2"></i>Download CV
+                    </a>
+                    <a href="mailto:suchetana.15.08@gmail.com" class="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center">
+                        <i class="fas fa-envelope mr-2"></i>Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text slide-in-up">About Me</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col md:grid md:grid-cols-2 gap-12 items-start">
+                    <!-- Left Content -->
+                    <div class="slide-in-left text-left">
+                        <div class="space-y-6">
+                            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-8 rounded-2xl border-l-4 border-primary">
+                                <h3 class="text-2xl font-semibold mb-4 text-gray-800">My Journey</h3>
+                                <p class="text-gray-600 leading-relaxed mb-4" contenteditable="true">
+                                    I'm a passionate data analyst with a strong foundation in statistics, programming, and business intelligence. My journey began with a curiosity about how data can tell stories and drive meaningful decisions.
+                                </p>
+                                <p class="text-gray-600 leading-relaxed" contenteditable="true">
+                                    Through my academic pursuits and hands-on projects, I've developed expertise in transforming complex datasets into clear, actionable insights that help organizations make informed decisions.
+                                </p>
+                            </div>
+                            
+                            <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-8 rounded-2xl border-l-4 border-purple-500">
+                                <h3 class="text-2xl font-semibold mb-4 text-gray-800">What Drives Me</h3>
+                                <p class="text-gray-600 leading-relaxed" contenteditable="true">
+                                    I believe in the power of data to solve real-world problems. Whether it's predicting customer behavior, optimizing business processes, or uncovering hidden patterns, I'm motivated by the impact that thoughtful analysis can have on decision-making.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Content -->
+                    <div class="slide-in-right text-left">
+                        <div class="space-y-6">
+                            <!-- Key Strengths -->
+                            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                                <h3 class="text-2xl font-semibold mb-6 text-gray-800 flex items-center">
+                                    <i class="fas fa-star text-primary mr-3"></i>Key Strengths
+                                </h3>
+                                <div class="space-y-4">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 bg-primary rounded-full"></div>
+                                        <span class="text-gray-700" contenteditable="true">Advanced statistical analysis and modeling</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 bg-data-cyan rounded-full"></div>
+                                        <span class="text-gray-700" contenteditable="true">Data visualization and storytelling</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 bg-purple-500 rounded-full"></div>
+                                        <span class="text-gray-700" contenteditable="true">Machine learning and predictive analytics</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                                        <span class="text-gray-700" contenteditable="true">Business intelligence and strategy</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Personal Interests -->
+                            <div class="bg-gradient-to-r from-green-50 to-teal-50 p-8 rounded-2xl border-l-4 border-green-500">
+                                <h3 class="text-2xl font-semibold mb-4 text-gray-800">Beyond Data</h3>
+                                <p class="text-gray-600 leading-relaxed" contenteditable="true">
+                                    When I'm not analyzing datasets, you'll find me exploring new technologies, reading about emerging trends in AI and machine learning, or working on personal projects that combine my love for data with real-world applications.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Call to Action -->
+                <div class="text-center mt-16 slide-in-up">
+                    <div class="bg-gradient-to-r from-primary to-data-cyan p-8 rounded-2xl text-white">
+                        <h3 class="text-2xl font-semibold mb-4">Let's Work Together</h3>
+                        <p class="text-lg mb-6 opacity-90" contenteditable="true">
+                            I'm always excited to collaborate on data-driven projects and help organizations unlock the value in their data.
+                        </p>
+                        <button onclick="scrollToContact()" class="bg-white text-primary hover:bg-gray-100 px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105">
+                            <i class="fas fa-handshake mr-2"></i>Get In Touch
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section with Criss-Cross Timeline -->
+    <section id="education" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text slide-in-up">Educational Journey</h2>
+            
+            <div class="relative max-w-4xl mx-auto text-left">
+                <!-- Timeline Line -->
+                <div class="timeline-line"></div>
+                
+                <!-- MSc - Right -->
+                <div class="timeline-item relative mb-16">
+                    <div class="timeline-dot bg-primary border-4 border-white shadow-lg top-8"></div>
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-8 rounded-2xl border-l-4 border-primary shadow-lg">
+                                <div class="flex items-center mb-4">
+                                    <i class="fas fa-graduation-cap text-2xl text-primary mr-3"></i>
+                                    <span class="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full">2024–2026</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-2" contenteditable="true">MSc in Economics (Data Analytics)</h3>
+                                <p class="text-lg text-gray-600 mb-4" contenteditable="true">Symbiosis School of Economics</p>
+                                <div class="space-y-2 text-gray-600">
+                                    <p contenteditable="true" class="editable">• Advanced Machine Learning & AI</p>
+                                    <p contenteditable="true" class="editable">• Statistical Analysis & Modeling</p>
+                                    <p contenteditable="true" class="editable">• Big Data Technologies</p>
+                                    <p contenteditable="true" class="editable">• Research in Predictive Analytics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BSc - Left -->
+                <div class="timeline-item relative mb-16">
+                    <div class="timeline-dot bg-data-cyan border-4 border-white shadow-lg top-8"></div>
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-gradient-to-l from-blue-50 to-cyan-50 p-8 rounded-2xl border-r-4 border-data-cyan shadow-lg">
+                                <div class="flex items-center justify-end mb-4">
+                                    <span class="text-sm font-semibold text-data-cyan bg-data-cyan/10 px-3 py-1 rounded-full mr-3">2021–2024</span>
+                                    <i class="fas fa-laptop-code text-2xl text-data-cyan"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-2" contenteditable="true">BSc. in Economics (Hons.)</h3>
+                                <p class="text-lg text-gray-600 mb-4" contenteditable="true">Amity University Kolkata</p>
+                                <p class="text-lg text-gray-600 mb-2 font-semibold">Grade: 8.93</p>
+                                <div class="space-y-2 text-gray-600">
+                                    <p contenteditable="true" class="editable">• Advanced Econometrics</p>
+                                    <p contenteditable="true" class="editable">• Advanced Micro & Macro Economics</p>
+                                    <p contenteditable="true" class="editable">• Research work</p>
+                                    <p contenteditable="true" class="editable">• Advanced Mathematics & Statistics</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                </div>
+
+                <!-- High School 2 - Right -->
+                <div class="timeline-item relative mb-16">
+                    <div class="timeline-dot bg-primary border-4 border-white shadow-lg top-8"></div>
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-8 rounded-2xl border-l-4 border-primary shadow-lg">
+                                <div class="flex items-center mb-4">
+                                    <i class="fas fa-school text-2xl text-primary mr-3"></i>
+                                    <span class="text-sm font-semibold text-primary bg-primary/10 px-3 py-1 rounded-full" contenteditable="true">2021</span>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-2" contenteditable="true">High School (Final Year)</h3>
+                                <p class="text-lg text-gray-600 mb-4" contenteditable="true">Delhi Public School</p>
+                                <p class="text-lg text-gray-600 mb-2 font-semibold">Grade: 86.75%</p>
+                                <div class="space-y-2 text-gray-600">
+                                    <p contenteditable="true" class="editable">• Advanced Mathematics & Statistics</p>
+                                    <p contenteditable="true" class="editable">• Introduction to Economics</p>
+                                    <p contenteditable="true" class="editable">• Commerce & Accounts</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- High School 1 - Left -->
+                <div class="timeline-item relative">
+                    <div class="timeline-dot bg-data-cyan border-4 border-white shadow-lg top-8"></div>
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-gradient-to-l from-blue-50 to-cyan-50 p-8 rounded-2xl border-r-4 border-data-cyan shadow-lg">
+                                <div class="flex items-center justify-end mb-4">
+                                    <span class="text-sm font-semibold text-data-cyan bg-data-cyan/10 px-3 py-1 rounded-full mr-3" contenteditable="true">2019</span>
+                                    <i class="fas fa-school text-2xl text-data-cyan"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-2" contenteditable="true">High School (Early Years)</h3>
+                                <p class="text-lg text-gray-600 mb-4" contenteditable="true">Loreto Convent</p>
+                                <p class="text-lg text-gray-600 mb-2 font-semibold">Grade: 89%</p>
+                                <div class="space-y-2 text-gray-600">
+                                    <p contenteditable="true" class="editable">• Advanced Mathematics & Statistics</p>
+                                    <p contenteditable="true" class="editable">• Introduction to Computer Science</p>
+                                    <p contenteditable="true" class="editable">• Basic Science</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Internship Experience Section -->
+    <section id="experience" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text slide-in-up">Internship Experience</h2>
+            
+            <div class="max-w-4xl mx-auto text-left">
+                <!-- Single Internship -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 slide-in-left">
+                    <div class="flex flex-col md:flex-row md:items-start gap-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-primary to-data-cyan rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-building text-2xl text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-800 mb-2" contenteditable="true">Finance Intern</h3>
+                                    <p class="text-lg text-primary font-semibold" contenteditable="true">Nirmal Bang</p>
+                                </div>
+                                <div class="text-right">
+                                    <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold" contenteditable="true">Jun 2023 - Aug 2023</span>
+                                    <p class="text-gray-500 mt-1" contenteditable="true">Kolkata</p>
+                                </div>
+                            </div>
+                            <div class="space-y-3 text-gray-600 mb-6">
+                                <p contenteditable="true" class="editable">• Conducting preliminary research on Indian equities, analyzing sectoral trends, and monitoring financial indicators across banking, FMCG, and energy segments.</p>
+                                <p contenteditable="true" class="editable">• Assisting in the evaluation of client portfolios, benchmarking performance against market indices, and identifying potential areas for diversification.</p>
+                                <p contenteditable="true" class="editable">• Supporting client engagement activities by preparing investment reports, organizing briefings, and maintaining communication records.</p>
+                                <p contenteditable="true" class="editable">• Gaining exposure to financial modeling techniques and tools such as Excel (formulas, pivot tables) and PowerPoint for report development.</p>
+                                <p contenteditable="true" class="editable">• Collaborating with analysts in preparing market summaries and strategic commentary used in client presentations.</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 text-sm rounded-full" contenteditable="true">Python</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 text-sm rounded-full" contenteditable="true">SQL</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 text-sm rounded-full" contenteditable="true">Financial Analysis</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 text-sm rounded-full" contenteditable="true">Excel</span>
+                                <span class="px-3 py-1 bg-blue-50 text-blue-700 text-sm rounded-full" contenteditable="true">Statistical Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text slide-in-up">Technical Skills</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 text-left">
+                <!-- Programming Languages -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-data-cyan rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4" contenteditable="true">Programming</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span contenteditable="true" class="editable">Python</span>
+                                <span class="text-sm text-gray-500">95%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-primary to-data-cyan h-2 rounded-full" data-width="95"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span contenteditable="true" class="editable">SQL</span>
+                                <span class="text-sm text-gray-500">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-primary to-data-cyan h-2 rounded-full" data-width="90"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span contenteditable="true" class="editable">R</span>
+                                <span class="text-sm text-gray-500">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-primary to-data-cyan h-2 rounded-full" data-width="85"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Visualization -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-data-cyan rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-bar text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4" contenteditable="true">Visualization</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span contenteditable="true" class="editable">Tableau</span>
+                                <span class="text-sm text-gray-500">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-primary to-data-cyan h-2 rounded-full" data-width="92"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span contenteditable="true" class="editable">Power BI</span>
+                                <span class="text-sm text-gray-500">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-primary to-data-cyan h-2 rounded-full" data-width="88"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span contenteditable="true" class="editable">Matplotlib/Seaborn</span>
+                                <span class="text-sm text-gray-500">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-primary to-data-cyan h-2 rounded-full" data-width="90"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Machine Learning -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-data-cyan rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4" contenteditable="true">Machine Learning</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span contenteditable="true" class="editable">Scikit-learn</span>
+                                <span class="text-sm text-gray-500">87%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-primary to-data-cyan h-2 rounded-full" data-width="87"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span contenteditable="true" class="editable">TensorFlow</span>
+                                <span class="text-sm text-gray-500">80%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-primary to-data-cyan h-2 rounded-full" data-width="80"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span contenteditable="true" class="editable">Statistical Analysis</span>
+                                <span class="text-sm text-gray-500">93%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="skill-bar bg-gradient-to-r from-primary to-data-cyan h-2 rounded-full" data-width="93"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools & Technologies -->
+            <div class="text-center">
+                <h3 class="text-2xl font-semibold mb-8 text-gray-700">Tools & Technologies</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="px-4 py-2 bg-white rounded-full shadow-md border border-gray-200 text-gray-700" contenteditable="true">Excel</span>
+                    <span class="px-4 py-2 bg-white rounded-full shadow-md border border-gray-200 text-gray-700" contenteditable="true">Jupyter</span>
+                    <span class="px-4 py-2 bg-white rounded-full shadow-md border border-gray-200 text-gray-700" contenteditable="true">Git</span>
+                    <span class="px-4 py-2 bg-white rounded-full shadow-md border border-gray-200 text-gray-700" contenteditable="true">AWS</span>
+                    <span class="px-4 py-2 bg-white rounded-full shadow-md border border-gray-200 text-gray-700" contenteditable="true">Apache Spark</span>
+                    <span class="px-4 py-2 bg-white rounded-full shadow-md border border-gray-200 text-gray-700" contenteditable="true">Hadoop</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text slide-in-up">Certifications</h2>
+            
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto text-left">
+                <!-- Certification 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 slide-in-left group">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-data-cyan rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-certificate text-2xl text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2" contenteditable="true">Social Media Data Analytics</h3>
+                            <p class="text-primary font-medium mb-1" contenteditable="true">University of Washington</p>
+                            <p class="text-sm text-gray-500" contenteditable="true">Issued: 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4" contenteditable="true">Hands-on training in collecting, analyzing, and visualizing social media data. Applied regression, correlation, text mining, and sentiment analysis to extract insights from structured and unstructured content.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">Python</span>
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">APIs (Twitter, YouTube)</span>
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">Text Mining</span>
+                    </div>
+                    <button class="text-primary hover:text-secondary text-sm font-medium transition-colors duration-300">
+                </div>
+
+                <!-- Certification 2 -->
+
+                <!-- Certification 3 -->
+                <!-- Certification 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 slide-in-up group">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-data-cyan rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-award text-2xl text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2" contenteditable="true">Applied Text Mining in Python</h3>
+                            <p class="text-primary font-medium mb-1" contenteditable="true">University of Michigan</p>
+                            <p class="text-sm text-gray-500" contenteditable="true">Issued: 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4" contenteditable="true">Learned practical techniques to process and analyze textual data using Python. Covered natural language processing, text classification, and sentiment analysis.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">Python</span>
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">NLTK</span>
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">scikit-learn</span>
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">Text Mining</span>
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">Sentiment Analysis</span>
+                    </div>
+                </div>
+
+                <!-- Certification 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 slide-in-right group">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-data-cyan rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-medal text-2xl text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2" contenteditable="true">Big Data Specialization</h3>
+                            <p class="text-primary font-medium mb-1" contenteditable="true">University of California, San Diego</p>
+                            <p class="text-sm text-gray-500" contenteditable="true">Issued: 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-4" contenteditable="true">Comprehensive program on big data systems and analytics. Gained skills in data modeling, large-scale processing, machine learning, and graph analytics using distributed platforms.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">Hadoop</span>
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">Spark</span>
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">Hive</span>
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">Pig</span>
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">Scala</span>
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">NoSQL Databases</span>
+                        <span class="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full" contenteditable="true">Machine Learning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Skills Section -->
+    <section id="professional-skills" class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12 gradient-text slide-in-up">Professional Skills</h2>
+            
+            <!-- Creative Hexagon Grid -->
+            <div class="relative text-left">
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <!-- Row 1 -->
+                    <div class="skill-hex bg-gradient-to-br from-primary to-data-cyan text-white p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group" style="width: 180px; height: 120px;">
+                        <div class="flex flex-col items-center justify-center h-full text-center">
+                            <i class="fas fa-comments text-2xl mb-2 group-hover:animate-bounce"></i>
+                            <span class="font-semibold text-sm">Communication</span>
+                            <span class="text-xs opacity-80">Data Storytelling</span>
+                        </div>
+                    </div>
+                    <div class="skill-hex bg-gradient-to-br from-purple-500 to-pink-500 text-white p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group" style="width: 180px; height: 120px;">
+                        <div class="flex flex-col items-center justify-center h-full text-center">
+                            <i class="fas fa-lightbulb text-2xl mb-2 group-hover:animate-bounce"></i>
+                            <span class="font-semibold text-sm">Problem Solving</span>
+                            <span class="text-xs opacity-80">Critical Thinking</span>
+                        </div>
+                    </div>
+                    <div class="skill-hex bg-gradient-to-br from-green-500 to-teal-500 text-white p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group" style="width: 180px; height: 120px;">
+                        <div class="flex flex-col items-center justify-center h-full text-center">
+                            <i class="fas fa-users text-2xl mb-2 group-hover:animate-bounce"></i>
+                            <span class="font-semibold text-sm">Leadership</span>
+                            <span class="text-xs opacity-80">Team Management</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Row 2 -->
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="skill-hex bg-gradient-to-br from-orange-500 to-red-500 text-white p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group" style="width: 180px; height: 120px;">
+                        <div class="flex flex-col items-center justify-center h-full text-center">
+                            <i class="fas fa-tasks text-2xl mb-2 group-hover:animate-bounce"></i>
+                            <span class="font-semibold text-sm">Project Management</span>
+                            <span class="text-xs opacity-80">Agile Methods</span>
+                        </div>
+                    </div>
+                    <div class="skill-hex bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group" style="width: 180px; height: 120px;">
+                        <div class="flex flex-col items-center justify-center h-full text-center">
+                            <i class="fas fa-chart-pie text-2xl mb-2 group-hover:animate-bounce"></i>
+                            <span class="font-semibold text-sm">Business Acumen</span>
+                            <span class="text-xs opacity-80">Strategic Analysis</span>
+                        </div>
+                    </div>
+                    <div class="skill-hex bg-gradient-to-br from-cyan-500 to-blue-600 text-white p-6 rounded-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group" style="width: 180px; height: 120px;">
+                        <div class="flex flex-col items-center justify-center h-full text-center">
+                            <i class="fas fa-sync-alt text-2xl mb-2 group-hover:animate-bounce"></i>
+                            <span class="font-semibold text-sm">Adaptability</span>
+                            <span class="text-xs opacity-80">Continuous Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Academic Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text slide-in-up">Academic Projects</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto text-left">
+                <!-- Project 1: Data Mining Approaches to Financial Inclusion and Credit Risk in Emerging Economies -->
+                <div class="project-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-data-cyan rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-university text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Data Mining Approaches to Financial Inclusion and Credit Risk in Emerging Economies</h3>
+                    <p class="text-gray-600 mb-6">Explored data mining techniques to assess financial inclusion and credit risk patterns in emerging markets, identifying socio-economic indicators and improving risk evaluation models.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">Python</span>
+                        <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">R</span>
+                        <span class="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full">SQL</span>
+                    </div>
+                </div>
+
+                <!-- Project 2: Real-Time Financial Data Analysis using Big Data Tools -->
+                <div class="project-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-bolt text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Real-Time Financial Data Analysis using Big Data Tools</h3>
+                    <p class="text-gray-600 mb-6">Implemented real-time processing of financial datasets with Big Data frameworks to detect trends, anomalies, and market shifts for faster decision-making.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-sm rounded-full">Hadoop</span>
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-sm rounded-full">Spark</span>
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-700 text-sm rounded-full">Kafka</span>
+                    </div>
+                </div>
+
+                <!-- Project 3: A Comparative Inquiry into Healthcare Infrastructure and Composite Healthcare of West Bengal -->
+                <div class="project-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-hospital text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">A Comparative Inquiry into Healthcare Infrastructure and Composite Healthcare of West Bengal</h3>
+                    <p class="text-gray-600 mb-6">Conducted a comparative study of healthcare systems in West Bengal, evaluating infrastructure, accessibility, and outcomes through statistical and visualization methods.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-green-100 text-green-700 text-sm rounded-full">R</span>
+                        <span class="px-3 py-1 bg-green-100 text-green-700 text-sm rounded-full">Excel</span>
+                        <span class="px-3 py-1 bg-green-100 text-green-700 text-sm rounded-full">Orange</span>
+                    </div>
+                </div>
+
+                <!-- Project 4: The Impact of COVID-19 on Employment in the US Healthcare Sector -->
+                <div class="project-card bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-user-md text-3xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">The Impact of COVID-19 on Employment in the US Healthcare Sector</h3>
+                    <p class="text-gray-600 mb-6">Analyzed employment trends during the COVID-19 pandemic within the US healthcare sector, highlighting workforce challenges, job loss patterns, and recovery prospects.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-red-100 text-red-700 text-sm rounded-full">Python</span>
+                        <span class="px-3 py-1 bg-red-100 text-red-700 text-sm rounded-full">Pandas</span>
+                        <span class="px-3 py-1 bg-red-100 text-red-700 text-sm rounded-full">SQL</span>
+                        <span class="px-3 py-1 bg-red-100 text-red-700 text-sm rounded-full">Power BI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text slide-in-up">Let's Connect</h2>
+            
+            <!-- Contact Info -->
+            <div class="max-w-2xl mx-auto text-left">
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-envelope text-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Email</h3>
+                                <p class="text-gray-600">suchetana.15.08@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-phone text-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Phone</h3>
+                                <p class="text-gray-600">7407585635</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 mb-12 max-w-md mx-auto">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-map-marker-alt text-primary"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Location</h3>
+                            <p class="text-gray-600">Pune, India</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <h3 class="font-semibold text-gray-800 mb-6">Connect With Me</h3>
+                    <div class="flex justify-center space-x-6">
+                        <a href="https://www.linkedin.com/in/suchetana-biswas-3a8024275?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="text-primary hover:text-secondary text-5xl transition-all duration-300">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.instagram.com/_._s.h.r.u.t.i.__?igsh=YmoxMGNkOHBrbjlh" target="_blank" class="text-pink-600 hover:text-pink-800 text-5xl transition-all duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <p class="text-gray-400">© 2025 <span>Suchetana Biswas</span>. All rights reserved.</p>
+            <p class="text-gray-500 mt-2">Turning Data into Insights</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate skill bars on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar');
+                    skillBars.forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        setTimeout(() => {
+                            bar.style.width = width + '%';
+                        }, 200);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        const skillsSection = document.querySelector('#skills');
+        if (skillsSection) {
+            observer.observe(skillsSection);
+        }
+
+        // Form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const button = form.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+            
+            button.textContent = 'Sending...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.textContent = 'Message Sent!';
+                button.style.backgroundColor = '#10b981';
+                
+                setTimeout(() => {
+                    form.reset();
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    button.style.backgroundColor = '';
+                }, 2000);
+            }, 1000);
+        }
+
+        // Profile picture upload functionality
+        function triggerFileInput() {
+            document.getElementById('imageInput').click();
+        }
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                // Check file size (limit to 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('File size should be less than 5MB');
+                    return;
+                }
+
+                // Check file type
+                if (!file.type.startsWith('image/')) {
+                    alert('Please select an image file');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const profileImage = document.getElementById('profileImage');
+                    const placeholder = document.getElementById('profilePlaceholder');
+                    
+                    profileImage.src = e.target.result;
+                    profileImage.style.display = 'block';
+                    placeholder.style.display = 'none';
+                    
+                    // Store in localStorage for persistence
+                    localStorage.setItem('profileImage', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Load saved profile image on page load
+        window.addEventListener('load', function() {
+            const savedImage = localStorage.getItem('profileImage');
+            if (savedImage) {
+                const profileImage = document.getElementById('profileImage');
+                const placeholder = document.getElementById('profilePlaceholder');
+                
+                profileImage.src = savedImage;
+                profileImage.style.display = 'block';
+                placeholder.style.display = 'none';
+            }
+        });
+
+        // CV Download functionality
+        function downloadCV() {
+            // Create a simple CV content
+            const cvContent = `
+                Data Analyst Portfolio CV
+                ========================
+                
+                Name: ${document.querySelector('h1 span').textContent}
+                Title: ${document.querySelector('.typewriter span').textContent}
+                
+                Contact Information:
+                Email: ${document.querySelector('[contenteditable="true"]').textContent}
+                
+                Education:
+                - MSc in Data Science (2022-2024)
+                - BSc in Computer Science (2019-2022)
+                - High School (2017-2019)
+                
+                Technical Skills:
+                - Python, SQL, R
+                - Tableau, Power BI
+                - Machine Learning, Statistical Analysis
+                
+                Professional Skills:
+                - Communication & Data Storytelling
+                - Problem Solving & Critical Thinking
+                - Leadership & Team Management
+                - Project Management & Agile Methods
+                - Business Acumen & Strategic Analysis
+                - Adaptability & Continuous Learning
+                
+                Academic Projects:
+                1. Customer Churn Prediction
+                2. E-commerce Sales Analysis
+                3. Healthcare Data Mining
+                4. Stock Price Prediction
+                
+                Generated from Data Analyst Portfolio
+            `;
+            
+            const blob = new Blob([cvContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Data_Analyst_CV.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            // Show success message
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check mr-2"></i>Downloaded!';
+            button.style.backgroundColor = '#10b981';
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.backgroundColor = '';
+            }, 2000);
+        }
+
+        // Scroll to contact function
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Scroll animations
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observe all animated elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-up, .fade-in');
+            animatedElements.forEach(el => scrollObserver.observe(el));
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9819f98a236b3b6d',t:'MTc1ODI5NDI1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
 
